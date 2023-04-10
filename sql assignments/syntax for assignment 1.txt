@@ -1,0 +1,47 @@
+show databases;
+use assignments;
+show tables;
+create database assignment;
+use assignment;
+create table countries (countryname varchar(100) , population integer , capital varchar(100));
+insert into countries values ("china",1382,"beijing"),("india",1326,"delhi");
+insert into countries values ("united states",324,"washington dc"),("indonesia",260,"kakarta"),("brazil",209,"brasilia"),("pakistan",193,"islamabad"),("nigeria",187,"abuja"),
+("bangladesh",163,"dhaka"),("russia",143,"moscow"),("mexico",128,"mexico city"),("japan",126,"tokyo"),("phillipians",102,"manila"),("ethiopia",101,"addis ababa"),("vietnam",94,"hanol"),
+("egypt",93,"cairo"),("germany",81,"berlin"),("iran",80,"tehran"),("turkey",79,"ankara"),("congo",79,"kinshasa"),("france",64,"paris"),("united kingdom",65,"london"),
+("itali",60,"rome"),("south afrika",55,"pretoria"), ("myanmar",54,"naypyidaw"),("belgium",193,"brussels"),("austria",193,"vienna");
+select * from countries;
+set sql_safe_updates=0;
+update countries set capital = "new delhi" where countryname="india";
+create table suppliers(
+supplier_id int auto_increment primary key,
+supplier_name varchar(100),
+location varchar(100));
+insert into suppliers values (1,"autoparts","mumbai");
+insert into suppliers values (2,"behr india","mumbai");
+create table product(
+product_id int primary key auto_increment ,
+product_name char(100) unique,
+supplier_id int,
+foreign key(supplier_id) references suppliers(supplier_id));
+insert into product values (1,"spcc29",1),(2,"CBL",1),(3,"LCB",2),(4,"spcpc29",2);
+ insert into product values(5,"koza",2);
+create table stock(
+id int primary key,
+product_id int,
+foreign key(product_id) references product(product_id),
+balance_stock int not null);
+insert into stock values(1,1,500),(2,2,100),(3,3,200),(4,4,700),(5,5,20000);
+alter table suppliers modify column supplier_name varchar(100) not null unique ;
+
+alter table emp add column deptno integer not null;
+update emp set deptno=20 where emp_no%2=0;
+update emp set deptno=30 where emp_no%3=0;
+update emp set deptno=40 where emp_no%4=0;
+update emp set deptno=50 where emp_no%5=0;
+update emp set deptno=10 where deptno is null;
+
+
+create unique index idx using hash on emp(emp_no);
+
+
+

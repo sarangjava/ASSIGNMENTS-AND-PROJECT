@@ -1,0 +1,64 @@
+
+select * from employee;
+select * from employee where deptno=10 and salary>3000;
+select * from students;
+alter table students add column grade varchar(100);
+
+
+delclare
+noofrows integer;
+studmarks integer;
+loopvar integer:=1;
+
+begin 
+
+select count(*) into noofrows from students;
+while loopvar<=noofrows
+loop
+select marks into studmarks from students where id=loopvar;
+if studmarks>=80 then
+update students set grade='distinction' where id = loopvar;
+elseif studmarks>=60 and studmarks<=79 then
+update students set grade='firstclass' where id = loopvar;
+elseif studmarks>=50 and studmarks<=59 then
+update students set grade='firstclass' where id = loopvar;
+elseif studmarks>=40 and studmarks<=49 then
+update students set grade='secondclass' where id = loopvar;
+else 
+update student set grade='fail' where id = loopvar;
+endif;
+loopvar:=loopvar+1;
+end loop;
+end;
+
+
+select count(marks) from students where marks between 50 and 80;
+select count(marks) from students where marks between 80 and 100;
+
+
+select * from station;
+select * from station where id%2=0;
+
+select * from students where marks > 60 and marks < 80;
+select * from students where marks > 80;
+
+select count(city) - count( distinct city) from station;
+
+select city from station where left(city,1) in ('a','e','i','o','u');
+
+select city from station where left(city,1) in ('a','e','i','o','u') and right(city,1) in ('a','e','i','o','u');
+
+select city from station where left(city,1) not in ('a','e','i','o','u');
+
+select city from station where left(city,1) not in ('a','e','i','o','u') and right(city,1) not in ('a','e','i','o','u');
+
+select * from emp where salary>2000 and hire_date>36 order by salary desc;
+
+select deptno, sum(salary) as total_salary from employee group by deptno;
+select name from city where population > 100000;
+
+select sum(population) from city where district = 'california';
+
+select distinct district,countrycode, avg(population) from city group by countrycode; 
+
+select ordernumber,status,customernumber from orders inner join customers on customers.customernumber = orders.customernumber in (select comments from orders where comments ='disputed');

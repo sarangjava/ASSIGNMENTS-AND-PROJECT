@@ -1,0 +1,29 @@
+9.1 What are the different device type preview that Dashboards can use?
+ANS- Device layouts appear on the Dashboard tab, under Default. 
+Initially, each device layout contains every item in the Default dashboard and derives its size and layout from Default as well.
+ Think of the Default dashboard as the parent, and the device layouts (desktop, tablet, and phone). as its children.
+
+
+
+
+11.1 Parameters can be used in?
+Parameters give you a way to dynamically modify values in a Top N filter.
+ Rather than manually setting the number of values you want to show in the filter,
+ you can use a parameter. 
+Then when you want to change the value,you open the parameter control and the filter updates.
+
+
+11.2 What are the different ways to create a Parameter?
+
+In the Data pane, click the drop-down arrow in the upper right corner and select Create Parameter.
+In the Create Parameter dialog box, give the field a Name.
+Specify the data type for the values it will accept
+Specify a current value.
+Specify a value when the workbook opens.
+
+
+12.1 You are provided with the dataset for the past 10yrs. 
+How can you forecast the data for next 4 years, Quarter wise.
+
+ANS-Go to the Analysis tab and click on Forecast under Model category.  On completing the step, you will find the option to set various options for forecast.
+ Choose the Forecast Length as 2 years and leave the Forecast Model to Automatic and then click OK.

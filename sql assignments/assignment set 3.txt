@@ -1,0 +1,109 @@
+
+
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MY_PROCEDURE_QUE1`(MONTH VARCHAR(255) , YEAR INT)
+BEGIN
+SELECT ORDERNUMBER,ORDERDATE, STATUS FROM ORDERS WHERE YEAR(ORDERDATE)=YEAR AND LEFT(MONTHNAME(ORDERDATE),3)=MONTH;
+
+END
+
+
+call assignment.MY_PROCEDURE_QUE1('jan', 2003);
+
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `new_procedure_ans2`()
+BEGIN
+create table if not exists cancellations (id int primary key auto_increment ,comments varchar(255), 
+customernumber int , foreign key (customerNumber) references customers(customerNumber),
+ordernumber int, foreign key (ordernumber) references orders(ordernumber));
+insert into cancellations (customerNumber,ordernumber)
+select customernumber,ordernumber from orders where status = "cancelled";
+SELECT "CANCELED ORDER" AS MSG WHERE STATUS ="CANCELLED";
+END
+
+
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `purchase_status`(customernumber int) RETURNS varchar(255) CHARSET utf8mb4
+BEGIN
+declare purchase_status varchar(255) ;
+select
+case
+when amount<25000 then purchase_status = "silver"
+when amount between 25000 and 50000 then purchase_status = "gold"
+when amount> 50000 then purchase_status = "platinum"
+end as purchasestatus
+into Purchase_status from payments where customerNumber=customerNumber;
+RETURN (Purchase_status);
+END
+
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `pur_stat`(
+cid int
+) RETURNS varchar(20) CHARSET utf8mb4
+BEGIN
+    DECLARE stat VARCHAR(20);
+    DECLARE credit numeric;
+    SET credit = (select sum(Amount) from Payments where Customernumber = cid);
+
+    IF credit > 50000 THEN
+        SET stat = 'platinum';
+    ELSEIF (credit >= 25000 AND 
+            credit <= 50000) THEN
+        SET stat = 'gold';
+    ELSEIF credit < 25000 THEN
+        SET stat = 'silver';
+    END IF;
+    RETURN (stat);
+    END
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `New_proc_ans3b`()
+BEGIN
+select customers.customerNumber ,
+customerName ,
+case
+if amount<25000 then "silver";
+elseif amount between 25000 and 50000 then "Gold";
+elseif amount>50000 then "Platinum";
+else "not available";
+end 
+as purchasest0atus
+from payments
+inner join customers ON
+payments.customerNumber=customers.customerNumber;
+END
+
+
+
+
+
+CREATE DEFINER=`root`@`localhost` TRIGGER `UPDATE_cascade` AFTER UPDATE
+ON `movies` FOR EACH ROW
+BEGIN
+update rentals set movieid = new.id where movieid = old.id;
+
+END
+
+
+CREATE DEFINER=`root`@`localhost` TRIGGER `DELETE_cascade` BEFORE DELETE
+ON `movies` FOR EACH ROW
+BEGIN
+delete from rentals where movieid = old.id;
+END
+
+
+
+ select fname , lname , salary , first_value(fname) over (order by salary desc) as highest_salary from employee limit 10;
+
+
+
+select fname,lname,rank() over (order by salary) as rank1 from employee; 
+
+
+
+
+
+
+

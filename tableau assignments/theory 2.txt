@@ -1,0 +1,41 @@
+What are the different types of filters and give their working order?
+ANS- 
+There are 6 types of filter in tableau.
+1.Extract Filter
+the extract filters are used to extract data from the various sources, 
+by saving a screengrab of the way it gets added on your file. 
+we can refresh extract to update file.
+steps- 1.Connect Tableau with the text file.
+2.Click on the “Extract button”. It will create a local copy in the Tableau source.
+
+2.Data Source Filter
+Used mainly to restrict sensitive data from the data viewers, 
+the data source filters are similar to the extract filters
+in minimizing the data feeds for faster processing.
+
+
+3.Context Filter
+A context filter is a discrete filter on its own,
+creating datasets based on the original datasheet and the presets chosen for compiling the data. 
+Since all the types of filters in tableau get applied to all rows in the datasheet, 
+irrespective of any other filters,the context filter would ensure that it is first to get processed.
+Go to the context menu of a prevailing categorical filter and select Add to Context to make a Context filter in tableau.
+Once the view is created, the context is calculated. 
+The context is then used to calculate all other filters.
+You can use Context Filter to find the topmost 10 subcategories of items in the Furniture category.
+
+
+4.Dimension Filter
+you can access the values highlighted or remove them from the selected dimension,
+represented as strikethrough values. 
+You can click All or None to select or deselect based on your operation in case of multiple dimensions.
+
+ 
+5.Measure Filter
+In this filter, you can apply the various operations like Sum, Avg, Median, Standard Deviation, and other aggregate functions. 
+In the next stage, you would be presented with four choices: Range, At least, At most, and Special for your values.
+
+
+6.Table Calculation Filter
+The last filter to process is the table calculation that gets executed once the data view has been rendered. 
+With this filter,you can quickly look into the data without any filtering of the hidden data. 
